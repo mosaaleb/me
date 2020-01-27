@@ -1,3 +1,11 @@
-import React from "react"
+/* eslint-disable react/display-name */
+import React from 'react';
+import Layout from '../layouts/Layout';
+import Portofolio from '../layouts/Portofolio';
+import '../stylesheets/styles.css';
 
-export default () => <div>Hello world!</div>
+export default () => (
+  <Layout>
+    <Portofolio />
+  </Layout>
+);

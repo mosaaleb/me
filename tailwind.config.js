@@ -1,7 +1,11 @@
 module.exports = {
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        ibm: ['IBM Plex Mono', 'monospace']
+      }
+    }
   },
   variants: {},
   plugins: []
-}
+};

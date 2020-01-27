@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from './Header';
 import SideBar from './SideBar';
 
 const Layout = ({ children }) => (
-  <>
-    <Header />
+  <div className="font-ibm h-screen flex">
     <SideBar />
-    <main>{children}</main>
-  </>
+    <main className="flex flex-grow">{children}</main>
+  </div>
 );
 
 Layout.propTypes = {

@@ -5,7 +5,7 @@ import SideBar from './SideBar';
 const Layout = ({ children }) => (
   <div className="font-ibm h-screen flex">
     <SideBar />
-    <main className="flex flex-grow">{children}</main>
+    <main className="flex-1 flex overflow-hidden ">{children}</main>
   </div>
 );
 

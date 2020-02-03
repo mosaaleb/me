@@ -3,6 +3,9 @@ module.exports = {
     extend: {
       fontFamily: {
         ibm: ['IBM Plex Mono', 'monospace']
+      },
+      width: {
+        '3/13': '23%'
       }
     }
   },

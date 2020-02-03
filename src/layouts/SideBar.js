@@ -3,14 +3,15 @@ import NavLinks from '../components/NavLinks';
 import SocialLinks from '../components/SocialLinks';
 
 const SideBar = () => {
-  const [isClosed, setIsClosed] = useState(true);
+  const isMobile = window.innerWidth < 480;
+  const [isClosed, setIsClosed] = useState(isMobile);
   return (
     <div
-      className={`bg-pattern fixed flex h-screen w-4/5 max-w-xs border-r-2 border-gray-900 flex-col justify-between
-      lg:flex lg:static
-      ${isClosed ? 'hidden' : 'flex'} shadow-lg`}
+      className={`bg-pattern fixed hidden flex flex-col w-4/5 justify-between h-screen border-r-2 border-gray-900
+                 sm:static lg:flex lg:w-3/13 lg:max-w-sm
+                 `}
     >
-      <div className="">
+      <div>
         <button
           type="button"
           onClick={() => setIsClosed(true)}
@@ -23,6 +24,15 @@ const SideBar = () => {
         <NavLinks />
       </div>
       <SocialLinks />
+      <button type="button" className="fixed p-5 block focus:outline-none hover:text-indigo-600 lg:invisible z-50">
+        <svg
+          className="h-6 w-6 fill-current"
+        >
+          <path
+            d="M22 7V5H2V7H22ZM22 11V13H2V11H22ZM22 17V19H2V17H22Z"
+          />
+        </svg>
+      </button>
     </div>
   );
 };

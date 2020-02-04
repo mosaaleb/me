@@ -3,7 +3,7 @@ import { useState } from 'react';
 const useProjects = () => {
   const [projects] = useState([{
     id: 1,
-    name: 'EDoc',
+    name: 'IDoc',
     github: 'https://github.com/mosaaleb/edoc',
     live: 'https://react-ulator.herokuapp.com/',
     tags: ['React', 'Redux', 'Rails', 'JSON API', 'RSpec', 'TailwindCSS', 'Mobile'],

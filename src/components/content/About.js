@@ -9,7 +9,7 @@ const About = () => (
       <h3 className="text-xl md:text-2xl">Hi, I&apos;m Muhammad Ebeid.</h3>
       <h2 className="text-xl md:text-2xl mb-3">
         Nice to meet you!
-        <span role="img" aria-label="sheep">
+        <span role="img" aria-label="wave">
           👋🏼
         </span>
       </h2>
@@ -19,13 +19,28 @@ const About = () => (
           solutions with
           {' '}
           <a
+            target="_blank"
+            rel="noopener noreferrer"
             href="https://reactjs.org/"
             className="text-indigo-600 border-b border-dashed"
           >
             ReactJS.
           </a>
         </p>
-        <p>Passionate about building well-written rails application.</p>
+        <p>
+          Passionate about building well-written
+          {' '}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://rubyonrails.org/"
+            className="text-indigo-600 border-b border-dashed"
+          >
+            Rails
+          </a>
+          {' '}
+          applications.
+        </p>
       </div>
     </div>
   </div>

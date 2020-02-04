@@ -5,7 +5,8 @@ module.exports = {
         ibm: ['IBM Plex Mono', 'monospace']
       },
       width: {
-        '3/13': '23%'
+        '3/13': '23%',
+        '6/13': '47%'
       }
     }
   },

@@ -2,22 +2,32 @@ import React from 'react';
 
 const About = () => (
   <div className="p-4">
-    <h3 className="font-bold text-2xl text-indigo-600 border-b inline-block border-dashed border-gray-500">
+    <h3 className="font-bold text-4xl text-indigo-600 border-b inline-block border-dashed border-gray-500">
       About me
     </h3>
-    <h3 className="text-3xl leading-loose">
-      Hi
-      <span role="img" aria-label="sheep">
-        👋🏼
-      </span>
-    </h3>
-    <h2 className="text-xl text-indigo-600 leading-loose my-5 md:text-3xl">
-      I&apos;m Muhammad. Nice to meet you!
-    </h2>
-    <p className="text-lg leading-loose font-normal">
-      I&apos;m a software engineer based on Egypt. I am passionate about
-      building software that matters.
-    </p>
+    <div className="py-5">
+      <h3 className="text-xl md:text-2xl">Hi, I&apos;m Muhammad Ebeid.</h3>
+      <h2 className="text-xl md:text-2xl mb-3">
+        Nice to meet you!
+        <span role="img" aria-label="sheep">
+          👋🏼
+        </span>
+      </h2>
+      <div className="text-lg font-normal">
+        <p>
+          I&apos;m a software engineer based on Egypt. I create nice UI
+          solutions with
+          {' '}
+          <a
+            href="https://reactjs.org/"
+            className="text-indigo-600 border-b border-dashed"
+          >
+            ReactJS.
+          </a>
+        </p>
+        <p>Passionate about building well-written rails application.</p>
+      </div>
+    </div>
   </div>
 );
 export default About;

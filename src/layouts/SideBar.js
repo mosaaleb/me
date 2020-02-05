@@ -3,13 +3,12 @@ import NavLinks from '../components/NavLinks';
 import SocialLinks from '../components/SocialLinks';
 
 const SideBar = () => {
-  const isMobile = window.innerWidth < 480;
-  const [isClosed, setIsClosed] = useState(isMobile);
+  // const isMobile = window.innerWidth < 480;
+  const [, setIsClosed] = useState(false);
   return (
     <div
       className={`bg-pattern fixed hidden flex flex-col w-4/5 justify-between h-screen border-r-2 border-gray-900
-                 sm:static lg:flex lg:w-3/13 lg:max-w-sm
-                 `}
+                 sm:static lg:flex lg:w-3/13 lg:max-w-sm`}
     >
       <div>
         <button

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 import ValidationError from './ValidationError';
 import validateInput from '../../contactValidations';
+import useNotification from '../../hooks/useNotification';
 
 const ContactForm = () => {
+  const { notification, setNotification } = useNotification();
   const [inputValues, setInputValues] = useState({
     email: '',
     firstName: '',
@@ -21,6 +24,13 @@ const ContactForm = () => {
 
     if (isValid) {
       setValidation({ errors: {}, isValid: true });
+      const templateId = 'template_Am0fR1TU';
+      const userId = 'user_tBIav5BYRFfisfzaGuxcQ';
+
+      emailjs.send('gmail', templateId, inputValues, userId)
+        .then(() => {
+          setNotification('Thanks! I will contact you soon');
+        });
     } else {
       setValidation({ errors, isValid });
     }

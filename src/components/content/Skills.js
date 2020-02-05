@@ -25,6 +25,7 @@ const Skills = () => (
           <h3 className="font-bold text-center mt-3 mb-5">Frontend</h3>
           <ul className="list-disc px-10">
             <li>React/Redux</li>
+            <li>GatsbyJS</li>
             <li>Javascript</li>
             <li>Webpack</li>
             <li>HTML/CSS/SASS</li>

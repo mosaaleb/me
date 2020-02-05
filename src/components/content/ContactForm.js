@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
 import ValidationError from './ValidationError';
 import validateInput from '../../contactValidations';
-import useNotification from '../../hooks/useNotification';
+import Notification from '../Notification';
 
 const ContactForm = () => {
-  const { notification, setNotification } = useNotification();
+  const [notification, setNotification] = useState(null);
   const [inputValues, setInputValues] = useState({
     email: '',
     firstName: '',
@@ -29,8 +29,16 @@ const ContactForm = () => {
 
       emailjs.send('gmail', templateId, inputValues, userId)
         .then(() => {
-          setNotification('Thanks! I will contact you soon');
+          setNotification({ message: 'Thanks! I will contact you soon.', isSuccess: true });
+        }).catch(() => {
+          setNotification({ message: 'Ops! Something went wrong', isSuccess: false });
         });
+      setInputValues({
+        email: '',
+        firstName: '',
+        lastName: '',
+        message: ''
+      });
     } else {
       setValidation({ errors, isValid });
     }
@@ -38,6 +46,12 @@ const ContactForm = () => {
 
   return (
     <form className="w-full max-w-lg" onSubmit={handleSubmit} method="POST" noValidate>
+      {notification ? (
+        <Notification
+          message={notification.message}
+          isSuccess={notification.isSuccess}
+        />
+      ) : null}
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label

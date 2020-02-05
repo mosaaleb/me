@@ -22,8 +22,8 @@ const Skills = () => (
           </svg>
         </div>
         <div>
-          <h3 className="font-bold text-center mt-3 mb-5">Frontend</h3>
-          <ul className="list-disc px-10">
+          <h3 className="font-bold text-center mt-3 mb-5 text-lg">Frontend</h3>
+          <ul className="list-disc px-10 text-lg">
             <li>React/Redux</li>
             <li>GatsbyJS</li>
             <li>Javascript</li>
@@ -45,8 +45,8 @@ const Skills = () => (
           </svg>
         </div>
         <div>
-          <h3 className="font-bold text-center mt-3 mb-5">Backend</h3>
-          <ul className="list-disc px-10">
+          <h3 className="font-bold text-center mt-3 mb-5 text-lg">Backend</h3>
+          <ul className="list-disc px-10 text-lg">
             <li>Ruby/Rails</li>
             <li>TDD</li>
             <li>RSpec/Capybara</li>

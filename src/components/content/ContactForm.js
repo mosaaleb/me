@@ -45,7 +45,7 @@ const ContactForm = () => {
   };
 
   return (
-    <form className="w-full max-w-lg" onSubmit={handleSubmit} method="POST" noValidate>
+    <form className="w-full" onSubmit={handleSubmit} method="POST" noValidate>
       {notification ? (
         <Notification
           message={notification.message}

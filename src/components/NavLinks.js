@@ -19,7 +19,7 @@ const NavLinks = () => (
       <Link to="/">Contact</Link>
     </p>
     <p className="p-2 hover:underline hover:text-indigo-600">
-      <Link to="/">Blog</Link>
+      <Link to="/blog">Blog</Link>
     </p>
   </nav>
 );

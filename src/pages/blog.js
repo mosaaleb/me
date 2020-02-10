@@ -1,9 +1,16 @@
+/* eslint-disable react/display-name */
 import React from 'react';
+import Helmet from 'react-helmet';
 import Layout from '../layouts/Layout';
+import Blog from '../layouts/Blog';
 
-// eslint-disable-next-line react/display-name
 export default () => (
   <Layout>
-    <p>This is my personal blog</p>
+    <Helmet>
+      <html lang="en" />
+      <title>Blog</title>
+      <meta name="description" content="site description" />
+    </Helmet>
+    <Blog />
   </Layout>
 );

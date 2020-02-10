@@ -1,15 +1,32 @@
 module.exports = {
+  siteMetadata: {
+    title: 'Muhammad Ebeid',
+    description: "Muhammad Ebeid's Portfolio"
+  },
   plugins: [
     'gatsby-plugin-postcss',
+    'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        defaultLayouts: {
+          default: require.resolve('./src/layouts/Layout.js')
+        }
+      }
+    },
     {
       resolve: 'gatsby-plugin-purgecss',
       options: {
         printRejected: true,
         develop: false,
         tailwind: true
-        // whitelist: ['whitelist'],
-        // ignore: ['/ignored.css', 'prismjs/', 'docsearch.js/'],
-        // purgeOnly : ['components/', '/main.css', 'bootstrap/'],
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'posts',
+        path: 'posts'
       }
     }
   ]

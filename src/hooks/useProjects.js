@@ -5,7 +5,7 @@ const useProjects = () => {
     id: 1,
     name: 'IDoc',
     github: 'https://github.com/mosaaleb/edoc',
-    live: 'http://edoc-capstone.herokuapp.com/',
+    live: 'https://edoc-capstone.herokuapp.com/',
     tags: ['React', 'Redux', 'Rails', 'JSON API', 'RSpec', 'TailwindCSS', 'Mobile'],
     image: './assets/idoc.png',
     description: 'IDoc is a platform for searching Doctors by their specialties and scheduling appointments. Front-end is built with React and Back-end is built with Rails.'

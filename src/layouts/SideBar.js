@@ -6,7 +6,7 @@ import SocialLinks from '../components/SocialLinks';
 const SideBar = ({ isSideBarOpen, setIsSideBarOpen }) => (
   <div
     className={`bg-pattern h-screen z-50 border-r-2 border-gray-900 w-4/5 flex flex-col justify-between
-                ${isSideBarOpen ? 'fixed' : 'hidden'}
+                ${isSideBarOpen ? 'fixed lg:static' : 'hidden lg:flex'}
                 lg:w-3/13 lg:max-w-sm lg:static`}
   >
     <div>

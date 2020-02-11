@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SideBar from './SideBar';
-import useWindowDimensions from '../hooks/useWindowDimensions';
 
 const Layout = ({ children }) => {
-  const { width } = useWindowDimensions();
-  const [isSideBarOpen, setIsSideBarOpen] = useState(width > 1024);
-
-  useEffect(() => {
-    setIsSideBarOpen(width > 1024);
-  }, [width]);
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
 
   return (
     <div className="font-ibm h-screen flex">

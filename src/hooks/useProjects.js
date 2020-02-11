@@ -8,7 +8,7 @@ const useProjects = () => {
     live: 'https://edoc-capstone.herokuapp.com/',
     tags: ['React', 'Redux', 'Rails', 'JSON API', 'RSpec', 'TailwindCSS', 'Mobile'],
     image: './assets/idoc.png',
-    description: 'IDoc is a platform for searching Doctors by their specialties and scheduling appointments. Front-end is built with React and Back-end is built with Rails.'
+    description: 'IDoc is a platform for finding Doctors by their specialties and scheduling appointments. Front-end is built with React and Back-end is built with Rails.'
   }, {
     id: 2,
     name: 'Bookstore',

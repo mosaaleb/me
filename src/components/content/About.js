@@ -6,7 +6,7 @@ const About = () => (
       About me
     </h3>
     <div className="py-5">
-      <h3 className="text-xl md:text-2xl">Hi, I&apos;m Muhammad Ebeid.</h3>
+      <h3 className="text-xl md:text-2xl">Hi, I&apos;m Muhammad.</h3>
       <h2 className="text-xl md:text-2xl mb-3">
         Nice to meet you!
         <span role="img" aria-label="wave">
@@ -15,7 +15,7 @@ const About = () => (
       </h2>
       <div className="text-lg font-normal">
         <p>
-          I&apos;m a software engineer based on Egypt. I create nice UI
+          I&apos;m a software engineer based in Egypt. I create nice UI
           solutions with
           {' '}
           <a

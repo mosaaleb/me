@@ -6,6 +6,7 @@ import Image from 'gatsby-image';
 import PropTypes from 'prop-types';
 import Layout from '../layouts/Layout';
 import TagLinks from '../components/TagLinks';
+import '../stylesheets/styles.css';
 
 export const query = graphql`
   query($slug: String!) {
@@ -43,11 +44,11 @@ const Post = ({ data: { mdx: post } }) => (
         Posted on&nbsp;
         {new Date(post.frontmatter.date).toDateString()}
       </h4>
-      <div className="rounded my-6 max-w-xl mx-auto overflow-hidden">
+      <div className="rounded my-6 mx-auto border overflow-hidden shadow-lg max-w-3xl">
         <Image
           alt={post.frontmatter.title}
           fluid={post.frontmatter.image.childImageSharp.fluid}
-          className="cover"
+          className="w-full"
         />
       </div>
       <div className="max-w-3xl mx-auto my-10">

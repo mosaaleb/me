@@ -3,6 +3,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Layout from '../layouts/Layout';
 import Blog from '../layouts/Blog';
+import '../stylesheets/styles.css';
 
 export default () => (
   <Layout>

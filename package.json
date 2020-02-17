@@ -11,7 +11,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "analyze": "ANALYZE_BUNDLE_SIZE=true gatsby build"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.5.5",
@@ -25,6 +26,7 @@
     "gatsby-plugin-purgecss": "^4.0.1",
     "gatsby-plugin-react-helmet": "^3.1.22",
     "gatsby-plugin-sharp": "^2.4.5",
+    "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
     "gatsby-source-filesystem": "^2.1.48",
     "gatsby-transformer-sharp": "^2.3.14",
     "prop-types": "^15.7.2",

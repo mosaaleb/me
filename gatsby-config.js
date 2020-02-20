@@ -13,7 +13,17 @@ module.exports = {
       options: {
         defaultLayouts: {
           default: require.resolve('./src/layouts/Layout.js')
-        }
+        },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 700,
+              maxHeight: 420,
+              loading: 'eager'
+            }
+          }
+        ]
       }
     },
     {

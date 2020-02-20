@@ -16,12 +16,11 @@ export const query = graphql`
         title
         image {
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 700, maxHeight: 420) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }
         }
-        author
         categories
       }
       body
@@ -32,7 +31,6 @@ export const query = graphql`
 const Post = ({ data: { mdx: post } }) => (
   <Layout>
     <Helmet>
-      <html lang="en" />
       <title>{post.frontmatter.title}</title>
     </Helmet>
     <div className="mx-auto md:w-11/12 max-w-6xl">
@@ -44,14 +42,13 @@ const Post = ({ data: { mdx: post } }) => (
         Posted on&nbsp;
         {new Date(post.frontmatter.date).toDateString()}
       </h4>
-      <div className="rounded my-6 mx-auto border overflow-hidden shadow-lg max-w-3xl">
-        <Image
-          alt={post.frontmatter.title}
-          fluid={post.frontmatter.image.childImageSharp.fluid}
-          className="w-full"
-        />
-      </div>
-      <div className="max-w-3xl mx-auto my-10">
+      <div className="max-w-3xl mx-auto my-10 markdown">
+        <div className="rounded mt-6 mx-auto border overflow-hidden shadow-lg max-w-3xl">
+          <Image
+            alt={post.frontmatter.title}
+            fluid={post.frontmatter.image.childImageSharp.fluid}
+          />
+        </div>
         <MDXRenderer>{post.body}</MDXRenderer>
       </div>
     </div>

@@ -7,16 +7,16 @@ const NavLinks = () => (
       <Link to="/">Home</Link>
     </p>
     <p className="p-2 hover:underline hover:text-indigo-600">
-      <Link to="/">About</Link>
+      <Link to="#about">About</Link>
     </p>
     <p className="p-2 hover:underline hover:text-indigo-600">
-      <Link to="/">Projects</Link>
+      <Link to="#projects">Projects</Link>
     </p>
     <p className="p-2 hover:underline hover:text-indigo-600">
-      <Link to="/">Skills</Link>
+      <Link to="#skills">Skills</Link>
     </p>
     <p className="p-2 hover:underline hover:text-indigo-600">
-      <Link to="/">Contact</Link>
+      <Link to="#contact">Contact</Link>
     </p>
     <p className="p-2 hover:underline hover:text-indigo-600">
       <Link to="/blog">Blog</Link>

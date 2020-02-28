@@ -2,7 +2,10 @@ import React from 'react';
 
 const Skills = () => (
   <div className="py-4">
-    <h3 className="font-bold text-4xl text-indigo-600 border-b inline-block border-dashed border-gray-500">
+    <h3
+      id="skills"
+      className="font-bold text-4xl text-indigo-600 border-b inline-block border-dashed border-gray-500"
+    >
       Skills
     </h3>
     <div className="flex flex-col lg:flex-row lg:justify-between">

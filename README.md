@@ -10,7 +10,6 @@
 - TailwindCSS
 
 
-
 ## License:
 
 This project is [MIT](https://github.com/mosaaleb/me/blob/master/LICENSE) licensed.

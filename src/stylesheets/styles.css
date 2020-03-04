@@ -55,7 +55,7 @@
 }
 
 .markdown {
-  @apply text-gray-900 leading-normal break-words;
+  @apply text-gray-900 break-words leading-relaxed;
 }
 
 .markdown > * + * {
@@ -87,27 +87,31 @@
 }
 
 .markdown h1 {
-  @apply leading-tight border-b text-4xl font-semibold mb-4 mt-6 pb-2;
+  @apply leading-tight border-b text-4xl .text-gray-900 font-semibold mb-4 mt-6 pb-2;
 }
 
 .markdown h2 {
-  @apply leading-tight border-b text-2xl font-semibold mb-4 mt-6 pb-2;
+  @apply leading-tight border-b text-2xl .text-gray-900 font-semibold mb-4 mt-6 pb-2;
 }
 
 .markdown h3 {
-  @apply leading-snug text-lg font-semibold mb-4 mt-6;
+  @apply leading-snug text-lg  .text-gray-900 font-semibold mb-4 mt-6;
 }
 
 .markdown h4 {
-  @apply leading-none text-base font-semibold mb-4 mt-6;
+  @apply leading-none text-base .text-gray-900 font-semibold mb-4 mt-6;
 }
 
 .markdown h5 {
-  @apply leading-tight text-sm font-semibold mb-4 mt-6;
+  @apply leading-tight text-sm .text-gray-900 font-semibold mb-4 mt-6;
 }
 
 .markdown h6 {
-  @apply leading-tight text-sm font-semibold text-gray-600 mb-4 mt-6;
+  @apply leading-tight text-sm .text-gray-900 font-semibold mb-4 mt-6;
+}
+
+.markdown p {
+  @apply text-lg;
 }
 
 .markdown blockquote {
@@ -153,4 +157,13 @@
 /* Override pygments style background color. */
 .markdown .highlight pre {
   @apply bg-gray-100 !important;
+}
+
+@screen lg {
+  .markdown {
+    @apply leading-loose;
+  }
+  .markdown p {
+    @apply text-xl;
+  }
 }

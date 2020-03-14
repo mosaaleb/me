@@ -1,0 +1,225 @@
+---
+slug: generate-initials-avatar-programmatically-with-minimagick-and-active-storage
+title: Generate initials avatar programmatically with MiniMagick and Active Storage
+author: Muhammad Ebeid
+description:
+  how to generate initial avatars programmatically with activ storage and minimagick in rails 
+date: "2019-03-17T00:52:08.562Z"
+categories:
+  - Rails
+  - Active-Storage
+  - MiniMagick
+image: ./images/hero.jpg
+attribute:
+  source: Unsplash
+  source-url: https://unsplash.com
+  photographer-name: Jon Tyson
+  photographer-link: https://unsplash.com/@jontyson
+---
+import CodeBlock from '../../src/components/CodeBlock';
+
+[Gravatar](https://en.gravatar.com/) is an amazing service to quickly personalize your business users, but despite its power, it comes also with some disadvantages. The more Gravatars that you have on your page, the slower the page will load because your application will make a request for every gravatar to gravatar servers.
+
+<br />
+
+In this guide, we will generate Gmail-like avatars with the user's name initials, using the [mini-magick](https://github.com/minimagick/minimagick) gem then attaching users avatars to [active storage](https://edgeguides.rubyonrails.org/active_storage_overview.html).
+
+
+## Generating the avatar
+
+Before getting serious, Let's first see a basic example of generating a new image.
+For this, we need to install MiniMagick gem.
+
+```bash
+gem install mini_magick
+```
+
+MiniMagick is a lightweight gem for image processing based on [ImageMagick](https://imagemagick.org/script/index.php). So before using it, we need to install ImageMagick first. Depending on your system, you will find instructions on how to install it from their [homepage](https://imagemagick.org/script/index.php).
+
+<br />
+
+Let's, for now, create an image with a gray background.
+
+Create a `avatar.rb` file
+
+```ruby
+# avatar.rb
+require 'mini_magick'
+def generate_image
+  MiniMagick::Tool::Convert.new do |image|
+    image.size '200x200'
+    image.xc 'gray'
+    image << 'avatar.jpg'
+  end
+end
+generate_image
+```
+
+run the script, you should see a new image with the name `avatar.jpg` having a gray background appears on the same directory.
+
+Let's add more properties to the generated image:
+
+
+
+```ruby
+# avatar.rb
+require 'mini_magick'
+
+def generate_image
+  MiniMagick::Tool::Convert.new do |image|
+    image.size '200x200'
+    image.gravity 'center'
+    image.xc 'gray'
+    image.pointsize 100
+    image.fill '#ffffff'
+    image.draw "text 0,0 ME"
+    image << 'avatar.jpg'
+  end
+end
+
+generate_image
+```
+
+Run the script again, you should see an image with "ME" letters centered in the image.
+
+<br/>
+
+Now we have finished the image generation logic, the real question remains where to put this logic.
+
+<br/>
+
+My first thought was to use active record callbacks, we can run the `generate_avatar` method with user name initials after creating a new user, but `generate_avatar` callback creates a dependency because creating the user and generating the default image are tightly coupled together.
+
+<br />
+
+Consider a scenario where you decided to add Omniauth authentication with Facebook and attach the user avatar to facebook image, this code will still run while we don't actually need it.
+
+<br />
+
+So instead we can move this logic into the registration controller which separates the concerns to only creating a user with full registration, but since controllers are only supposed to have request/response logic, we need a new design pattern.
+
+
+## Enter Service Objects
+
+Putting all image generation logic in the registration controller breaks the more important principle in OOP, single responsibility. So what is the solution?
+
+<br />
+
+Service objects are just Plain Old Ruby Object (PORO), which should encapsulate and execute single action.
+
+<br />
+
+Our code should look like:
+
+```ruby
+# registration_controller.rb
+
+def create
+  # ... user creation logic
+  AvatarGenerator.call(user)
+end
+```
+
+or if you are using [devise](https://github.com/heartcombo/devise) gem for authentication, we need first to [override](https://github.com/heartcombo/devise#configuring-controllers) the default `create` action in devise's `registration_controller`.
+
+After generating devise registration controller let's customize the `create` action to generate the default avatar after creating the new user.
+
+```ruby
+# registration_controller.rb
+class Users::RegistrationsController < Devise::RegistrationsController
+
+  def create
+    super { AvatarGenerator.call(resource) }
+  end
+.
+.
+.
+```
+What this will do is first will call the parent [`create`](https://github.com/heartcombo/devise/blob/master/app/controllers/devise/registrations_controller.rb#L16) action, and yield any block if any was given, in our case it will execute the avatar generation logic.
+
+
+The new avatar generation class is only now responsible for one thing, the registration controller is more readable and doesn't have logic that doesn't belong to it.
+
+
+## Adding MiniMagick through Image Processing gem
+
+Now that we have finished with our design decision, let's add our `AvatarGenerator` class.
+
+Before adding the code, we need to first install MiniMagick in our application.
+
+<br />
+
+To add `mini_magick` gem, you can install [image_processing](https://github.com/janko/image_processing) gem which is a wrapper for ImageMagick and libvips. Image Processing gem also provides [variants](https://api.rubyonrails.org/classes/ActiveStorage/Variant.html) for your images so that you can create thumbnails, fixed-size avatars, or any other image manipulations.
+
+Open `Gemfile` and add this line:
+
+```ruby
+gem 'image_processing'
+```
+
+Run `bundle install` to install the gem.
+
+
+<br />
+
+
+## Adding AvatarGenerator service object class
+
+First, create a new folder inside the `app` directory called `services` which will hold all service objects that our application will have. Now, let's create `avatar_generator.rb` file.
+
+This class's only purpose is to create a new image for each user and then attach the generated image to the user's active storage blob.
+
+
+```ruby
+require 'image_processing/mini_magick'
+
+class AvatarGenerator
+  attr_reader :user
+
+  AVATAR_COLORS = { '#561B8D' => '#C8F7C5',
+                    '#DFF0D8' => '#468847',
+                    '#F0E68C' => '#550055',
+                    '#C8C8C8' => '#551700',
+                    '#CD594A' => '#FFFFFF' }.freeze
+
+  def self.call(user)
+    new(user).call
+  end
+
+  def initialize(user)
+    @user = user
+  end
+
+  def call
+    generate_image
+    user.avatar.attach(io: File.open('default.jpg'),
+                       filename: "#{user.username}-default.jpg",
+                       content_type: 'image/jpg')
+
+    clean
+  end
+
+  private
+
+  def generate_image
+    rand = rand 0..4
+    MiniMagick::Tool::Convert.new do |image|
+      image.size '200x200'
+      image.gravity 'center'
+      image.xc AVATAR_COLORS.keys[rand]
+      image.pointsize 100
+      image.fill AVATAR_COLORS.values[rand]
+      image.draw "text 0,0 #{initial_letters}"
+      image << 'default.jpg'
+    end
+  end
+
+  def initial_letters
+    user.first_name.chr.capitalize + user.last_name.chr.capitalize
+  end
+
+  def clean
+    File.delete('default.jpg')
+  end
+end
+```

@@ -60,7 +60,6 @@ run the script, you should see a new image with the name `avatar.jpg` having a g
 Let's add more properties to the generated image:
 
 
-
 ```ruby
 # avatar.rb
 require 'mini_magick'
@@ -84,11 +83,11 @@ Run the script again, you should see an image with "ME" letters centered in the 
 
 <br/>
 
-Now we have finished the image generation logic, the real question remains where to put this logic.
+Now we have finished the image generation logic, the real question remains where to put this logic?
 
 <br/>
 
-My first thought was to use active record callbacks, we can run the `generate_avatar` method with user name initials after creating a new user, but `generate_avatar` callback creates a dependency because creating the user and generating the default image are tightly coupled together.
+My first thought was to use active record callbacks, we can run the `generate_avatar` method with user name initials after creating a new user, but there is one problem with using callbacks, `generate_avatar` callback will create a dependency because creating the user and generating the default image are tightly coupled together.
 
 <br />
 
@@ -111,6 +110,8 @@ Service objects are just Plain Old Ruby Object (PORO), which should encapsulate 
 
 Our code should look like:
 
+<br />
+
 ```ruby
 # registration_controller.rb
 
@@ -124,6 +125,8 @@ or if you are using [devise](https://github.com/heartcombo/devise) gem for authe
 
 After generating devise registration controller let's customize the `create` action to generate the default avatar after creating the new user.
 
+<br />
+
 ```ruby
 # registration_controller.rb
 class Users::RegistrationsController < Devise::RegistrationsController
@@ -135,13 +138,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 .
 .
 ```
+
+<br />
+
 What this will do is first will call the parent [`create`](https://github.com/heartcombo/devise/blob/master/app/controllers/devise/registrations_controller.rb#L16) action, and yield any block if any was given, in our case it will execute the avatar generation logic.
 
 
 The new avatar generation class is only now responsible for one thing, the registration controller is more readable and doesn't have logic that doesn't belong to it.
 
 
-## Adding MiniMagick through Image Processing gem
+## Adding MiniMagick/Image Processing gem
 
 Now that we have finished with our design decision, let's add our `AvatarGenerator` class.
 
@@ -157,17 +163,30 @@ Open `Gemfile` and add this line:
 gem 'image_processing'
 ```
 
-Run `bundle install` to install the gem.
-
+Or uncomment it if is already there, then run `bundle install` to install the gem.
 
 <br />
 
+We are going to attach the generated image with Active Storage attachments, so before moving on make sure that active storage is [installed](https://edgeguides.rubyonrails.org/active_storage_overview.html#setup)
+
+
+After you have added active storage, add this line to user model:
+
+```ruby
+# user.rb
+
+has_one_attached :avatar
+```
+
+We are ready now to add our `AvatarGenerator` class, let's move on.
 
 ## Adding AvatarGenerator service object class
 
 First, create a new folder inside the `app` directory called `services` which will hold all service objects that our application will have. Now, let's create `avatar_generator.rb` file.
 
-This class's only purpose is to create a new image for each user and then attach the generated image to the user's active storage blob.
+This class will:
+- Generate initials avatar image for new registered user.
+- Attach the newly generated image to the user's avatar with active storage.
 
 
 ```ruby
@@ -223,3 +242,19 @@ class AvatarGenerator
   end
 end
 ```
+
+I have added some random color choosing functionality to generate different colors every time you generate an avatar.
+
+<br />
+
+**In conclusion** 
+We have implemented a way to programtically generate Gmail-like avatars and used Service Objects design pattern to DRY fat controllers.
+
+<br />
+
+This concludes our detailed look into generating initials avatars in Rails. Hopefully, everything is working for you!
+
+## Resources:
+
+- [User Avatars with ActiveStorage | GoRails](https://gorails.com/episodes/user-avatars-with-rails-active-storage)
+- [Rails Service Objects: A Comprehensive Guide | Toptal](https://www.toptal.com/ruby-on-rails/rails-service-objects-tutorial)

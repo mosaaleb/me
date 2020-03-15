@@ -166,4 +166,7 @@
   .markdown p {
     @apply text-xl;
   }
+  .markdown li {
+    @apply text-xl;
+  }
 }

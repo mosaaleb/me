@@ -49,6 +49,13 @@ module.exports = {
         generateStatsFile: true,
         analyzerMode: 'static'
       }
+    },
+    {
+      resolve: 'gatsby-plugin-seo',
+      options: {
+        siteName: 'Muhammad Ebeid',
+        siteUrl: 'https://www.muhammadebeid.com/'
+      }
     }
   ]
 };

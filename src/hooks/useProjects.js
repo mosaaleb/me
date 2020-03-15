@@ -39,7 +39,7 @@ const useProjects = () => {
     name: 'Atlas',
     github: 'https://github.com/mosaaleb/Atlas',
     live: 'https://xenodochial-carson-49ee2c.netlify.com/',
-    tags: ['Javascript', 'Webpack', 'Weather API', 'Location API', 'TailwindCSS'],
+    tags: ['JavaScript', 'Webpack', 'Weather API', 'Location API', 'TailwindCSS'],
     image: './assets/atlas.png',
     description: 'Atlas allows you to access weather data for any location. It uses the Open Weather API to read current weather states, along with the use of Current Location API to automatically detect user current location.'
   }, {

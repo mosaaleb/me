@@ -7,13 +7,14 @@ import useSiteMetadata from '../hooks/useSiteMetadata';
 import '../stylesheets/styles.css';
 
 export default () => {
-  const { title, description } = useSiteMetadata();
+  const { title, description, siteUrl } = useSiteMetadata();
   return (
     <Layout>
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
         <meta name="description" content={description} />
+        <link rel="canonical" href={siteUrl} />
       </Helmet>
       <Portfolio />
     </Layout>

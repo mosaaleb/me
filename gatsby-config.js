@@ -1,7 +1,13 @@
 module.exports = {
   siteMetadata: {
     title: 'Muhammad Ebeid',
-    description: "Muhammad Ebeid's Portfolio"
+    description: "Muhammad Ebeid's Portfolio and Blog",
+    image: '/static/logo.png',
+    siteUrl: 'https://www.muhammadebeid.com/',
+    siteLanguage: 'en-GB',
+    siteLocale: 'en_gb',
+    twitterUsername: '@mosaaleb',
+    authorName: 'Muhammad Ebeid'
   },
   plugins: [
     'gatsby-plugin-postcss',
@@ -48,13 +54,6 @@ module.exports = {
         disable: !process.env.ANALYZE_BUNDLE_SIZE,
         generateStatsFile: true,
         analyzerMode: 'static'
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-seo',
-      options: {
-        siteName: 'Muhammad Ebeid',
-        siteUrl: 'https://www.muhammadebeid.com/'
       }
     }
   ]

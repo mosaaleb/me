@@ -5576,15 +5576,6 @@ gatsby-link@^2.2.28:
     "@types/reach__router" "^1.2.6"
     prop-types "^15.7.2"
 
-gatsby-node-helpers@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/gatsby-node-helpers/-/gatsby-node-helpers-0.3.0.tgz#3bdca3b7902a702a5834fef280ad66d51099d57c"
-  integrity sha1-O9yjt5AqcCpYNP7ygK1m1RCZ1Xw=
-  dependencies:
-    json-stringify-safe "^5.0.1"
-    lodash "^4.17.4"
-    p-is-promise "^1.1.0"
-
 gatsby-page-utils@^0.0.37:
   version "0.0.37"
   resolved "https://registry.yarnpkg.com/gatsby-page-utils/-/gatsby-page-utils-0.0.37.tgz#6ebc47acc790574b7bfa1f628b36ea95f261cb89"
@@ -5676,14 +5667,6 @@ gatsby-plugin-react-helmet@^3.1.22:
   integrity sha512-eG57C7Rm84dOpaFYxqQsKSzP0ge/6SnAEsPH5JcAcJ7vETtn3rCS6SB8qs+Nk/jhziAjdGjBw3CSJnOkg/QUJA==
   dependencies:
     "@babel/runtime" "^7.7.6"
-
-gatsby-plugin-seo@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-seo/-/gatsby-plugin-seo-0.0.2.tgz#7ed45c4b7d48118251c91fb11bca452199702f91"
-  integrity sha512-l0wNqzle++0kC2BOCwGjrszsHasvHO85XLgHBBpCLMmiX1IzqyLkS6HM8i+vJZtweekfeFKEpLJh0eClWLBINw==
-  dependencies:
-    gatsby-node-helpers "^0.3.0"
-    react-helmet "^5.2.1"
 
 gatsby-plugin-sharp@^2.4.5:
   version "2.4.5"

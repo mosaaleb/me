@@ -119,11 +119,11 @@
 }
 
 .markdown code {
-  @apply text-lg font-ibm inline bg-gray-200 rounded px-1 py-05;
+  @apply text-lg font-ibm inline rounded px-1 py-05;
 }
 
 .markdown pre {
-  @apply bg-gray-100 rounded p-4;
+  @apply rounded p-4 overflow-x-scroll;
 }
 
 .markdown pre code {

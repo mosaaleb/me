@@ -1,6 +1,6 @@
 ---
 slug: generate-initials-avatar-programmatically-with-minimagick-and-active-storage
-title: Generate initials avatar programmatically with MiniMagick and Active Storage
+title: How to generate initials avatar programmatically with MiniMagick and Active Storage
 author: Muhammad Ebeid
 description:
   how to generate initial avatars programmatically with activ storage and minimagick in rails 
@@ -16,8 +16,6 @@ attribute:
   photographer-name: Jon Tyson
   photographer-link: https://unsplash.com/@jontyson
 ---
-import CodeBlock from '../../src/components/CodeBlock';
-
 [Gravatar](https://en.gravatar.com/) is an amazing service to quickly personalize your business users, but despite its power, it comes also with some disadvantages. The more Gravatars that you have on your page, the slower the page will load because your application will make a request for every gravatar to gravatar servers.
 
 <br />
@@ -30,7 +28,7 @@ In this guide, we will generate Gmail-like avatars with the user's name initials
 Before getting serious, Let's first see a basic example of generating a new image.
 For this, we need to install MiniMagick gem.
 
-```bash
+```ruby
 gem install mini_magick
 ```
 
@@ -134,9 +132,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super { AvatarGenerator.call(resource) }
   end
-.
-.
-.
+
+  # ...
+end
 ```
 
 <br />
@@ -144,7 +142,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 What this will do is first will call the parent [`create`](https://github.com/heartcombo/devise/blob/master/app/controllers/devise/registrations_controller.rb#L16) action, and yield any block if any was given, in our case it will execute the avatar generation logic.
 
 
-The new avatar generation class is only now responsible for one thing, the registration controller is more readable and doesn't have logic that doesn't belong to it.
+The new avatar generation class is now responsible for one thing, the registration controller is more readable and doesn't have logic that doesn't belong to it.
 
 
 ## Adding MiniMagick/Image Processing gem

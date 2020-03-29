@@ -20,13 +20,13 @@ const usePosts = () => {
   `);
 
   return posts.allMdx.nodes.map((post) => ({
+    excerpt: post.excerpt,
     date: post.frontmatter.date,
     slug: post.frontmatter.slug,
     title: post.frontmatter.title,
     author: post.frontmatter.author,
     categories: post.frontmatter.categories,
-    description: post.frontmatter.description,
-    excerpt: post.excerpt
+    description: post.frontmatter.description
   }));
 };
 

@@ -1,2 +1,5 @@
+gatsby-ssr.js
+root-wrapper.js
 postcss.config.js
+gatsby-browser.js
 tailwindcss-config.js

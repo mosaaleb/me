@@ -22,12 +22,7 @@ module.exports = {
         },
         gatsbyRemarkPlugins: [
           {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 700,
-              maxHeight: 420,
-              loading: 'eager'
-            }
+            resolve: 'gatsby-remark-images'
           }
         ]
       }

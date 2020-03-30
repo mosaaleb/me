@@ -49,7 +49,7 @@ const useProjects = () => {
     live: 'https://react-ulator.herokuapp.com/',
     tags: ['React', 'SASS', 'Jest', 'Mobile'],
     image: './assets/calculator.png',
-    description: 'Calculator built with React'
+    description: 'Calculator built with React.'
   }]);
 
   return projects;

@@ -29,7 +29,7 @@ const Skills = () => (
           <ul className="list-disc px-10 text-lg">
             <li>React/Redux</li>
             <li>GatsbyJS</li>
-            <li>Javascript</li>
+            <li>JavaScript</li>
             <li>Webpack</li>
             <li>HTML/CSS/SASS</li>
             <li>TailwindCSS/Bootstrap</li>

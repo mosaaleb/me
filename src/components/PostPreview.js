@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
 const Post = ({ post }) => (
-  <article className="p-4 mb-4 rounded">
-    <div className="border-l-4 border-indigo-400 px-5">
+  <article className="py-4 mb-4 rounded">
+    <div className="border-l-4 border-indigo-400 px-3 md:px-10">
       <p className="text-sm text-gray-700">{new Date(post.date).toDateString()}</p>
       <h2 className="font-bold text-2xl underline text-indigo-600">
         <Link to={`/${post.slug}`}>{post.title}</Link>

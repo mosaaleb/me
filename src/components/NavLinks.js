@@ -1,27 +1,15 @@
 import React from 'react';
 import PropTyes from 'prop-types';
-import { Link } from 'gatsby';
+import NavLink from './NavLink';
 
 const NavLinks = ({ setIsSideBarOpen }) => (
   <nav className="text-2xl px-10">
-    <p className="p-2 hover:underline hover:text-indigo-600">
-      <Link to="/" onClick={() => setIsSideBarOpen(false)}>Home</Link>
-    </p>
-    <p className="p-2 hover:underline hover:text-indigo-600">
-      <Link to="#about" onClick={() => setIsSideBarOpen(false)}>About</Link>
-    </p>
-    <p className="p-2 hover:underline hover:text-indigo-600">
-      <Link to="#projects" onClick={() => setIsSideBarOpen(false)}>Projects</Link>
-    </p>
-    <p className="p-2 hover:underline hover:text-indigo-600">
-      <Link to="#skills" onClick={() => setIsSideBarOpen(false)}>Skills</Link>
-    </p>
-    <p className="p-2 hover:underline hover:text-indigo-600">
-      <Link to="#contact" onClick={() => setIsSideBarOpen(false)}>Contact</Link>
-    </p>
-    <p className="p-2 hover:underline hover:text-indigo-600">
-      <Link to="/blog">Blog</Link>
-    </p>
+    <NavLink linkName="Home" anchorLink="#home" setIsSideBarOpen={setIsSideBarOpen} />
+    <NavLink linkName="About" anchorLink="#about" setIsSideBarOpen={setIsSideBarOpen} />
+    <NavLink linkName="Projects" anchorLink="#projects" setIsSideBarOpen={setIsSideBarOpen} />
+    <NavLink linkName="Skills" anchorLink="#skills" setIsSideBarOpen={setIsSideBarOpen} />
+    <NavLink linkName="Contact" anchorLink="#contact" setIsSideBarOpen={setIsSideBarOpen} />
+    <NavLink linkName="Blog" anchorLink="/blog" setIsSideBarOpen={setIsSideBarOpen} />
   </nav>
 );
 

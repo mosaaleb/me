@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SideBar from './SideBar';
-import Footer from '../components/Footer';
+import PrimaryView from './PrimaryView';
 
 const Layout = ({ children }) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
@@ -12,16 +12,9 @@ const Layout = ({ children }) => {
         isSideBarOpen={isSideBarOpen}
         setIsSideBarOpen={setIsSideBarOpen}
       />
-      <main className="flex-1 flex flex-col overflow-hidden">
-        <div className="px-5 flex-1 overflow-y-scroll">
-          <div className="flex flex-col min-h-screen">
-            <div className="flex-grow py-16">
-              {children}
-            </div>
-            <Footer />
-          </div>
-        </div>
-      </main>
+      <PrimaryView>
+        {children}
+      </PrimaryView>
       <button
         type="button"
         onClick={() => setIsSideBarOpen(true)}

@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 
 const PrimaryView = ({ children }) => (
   <main className="flex-1 flex flex-col overflow-hidden">
-    <div className="px-5 flex-1 overflow-y-scroll">
+    <div className="px-5 flex-1 overflow-y-scroll focus:outline-none" tabIndex="-1">
       <div className="flex flex-col min-h-screen">
         <div className="flex-grow py-16">{children}</div>
         <Footer />

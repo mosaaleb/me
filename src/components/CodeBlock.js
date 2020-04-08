@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-// import Prism from 'prism-react-renderer/prism';
 import theme from 'prism-react-renderer/themes/duotoneLight';
 
 const CodeBlock = ({ codeString, language }) => (
@@ -21,9 +21,9 @@ const CodeBlock = ({ codeString, language }) => (
     }) => (
       <pre className={className} style={style}>
         {tokens.map((line, i) => (
-          <div {...getLineProps({ line, key: i })} key={line}>
+          <div {...getLineProps({ line, key: i })} key={i.toString()}>
             {line.map((token, key) => (
-              <div {...getTokenProps({ token, key })} key={token} />
+              <span {...getTokenProps({ token, key })} key={key.toString()} />
             ))}
           </div>
         ))}

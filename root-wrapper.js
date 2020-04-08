@@ -1,5 +1,5 @@
-import { MDXProvider } from '@mdx-js/react';
 import React from 'react';
+import { MDXProvider } from '@mdx-js/react';
 import CodeBlock from './src/components/CodeBlock';
 
 const components = {

@@ -40,7 +40,7 @@ Let's, for now, create an image with a gray background.
 
 Create a `avatar.rb` file
 
-```clike
+```ruby
 # avatar.rb
 require 'mini_magick'
 
@@ -60,7 +60,7 @@ run the script, you should see a new image with the name `avatar.jpg` having a g
 Let's add more properties to the generated image:
 
 
-```clike
+```ruby
 # avatar.rb
 require 'mini_magick'
 
@@ -80,6 +80,8 @@ generate_image
 ```
 
 Run the script again, you should see this image with centered "ME" letters.
+
+<br />
 
 ![avatar-sample](./images/avatar-sample.jpg)
 
@@ -113,7 +115,7 @@ Service objects are just Plain Old Ruby Object (PORO), which should encapsulate 
 Our code should look like:
 
 
-```clike
+```ruby
 # registration_controller.rb
 
 def create
@@ -128,7 +130,7 @@ After generating devise registration controller let's customize the `create` act
 
 <br />
 
-```clike
+```ruby
 # registration_controller.rb
 class Users::RegistrationsController < Devise::RegistrationsController
 
@@ -160,7 +162,7 @@ To add `mini_magick` gem, you can install [image_processing](https://github.com/
 
 Open `Gemfile` and add this line:
 
-```clike
+```ruby
 gem 'image_processing'
 ```
 
@@ -173,7 +175,7 @@ We are going to attach the generated image with Active Storage attachments, so b
 
 After you have added active storage, add this line to user model:
 
-```clike
+```ruby
 # user.rb
 
 has_one_attached :avatar
@@ -190,7 +192,7 @@ This class will:
 - Attach the newly generated image to the user's avatar with active storage.
 
 
-```clike
+```ruby
 require 'image_processing/mini_magick'
 
 class AvatarGenerator

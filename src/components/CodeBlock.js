@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import theme from 'prism-react-renderer/themes/duotoneLight';
+import theme from 'prism-react-renderer/themes/vsDark';
 
 const CodeBlock = ({ codeString, language }) => (
   <Highlight

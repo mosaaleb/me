@@ -1,6 +1,10 @@
 import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
+import Prism from "prism-react-renderer/prism";
 import CodeBlock from './src/components/CodeBlock';
+
+(typeof global !== "undefined" ? global : window).Prism = Prism;
+require("prismjs/components/prism-ruby");
 
 const components = {
   'p.inlineCode': props => (

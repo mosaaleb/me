@@ -8,9 +8,9 @@ const ContactForm = () => {
   const [notification, setNotification] = useState(null);
   const [inputValues, setInputValues] = useState({
     email: '',
-    firstName: '',
+    message: '',
     lastName: '',
-    message: ''
+    firstName: ''
   });
 
   const [validation, setValidation] = useState({
@@ -24,8 +24,8 @@ const ContactForm = () => {
 
     if (isValid) {
       setValidation({ errors: {}, isValid: true });
-      const templateId = 'template_Am0fR1TU';
-      const userId = 'user_tBIav5BYRFfisfzaGuxcQ';
+      const templateId = process.env.TEMPLATE_ID;
+      const userId = process.env.USER_ID;
 
       emailjs.send('gmail', templateId, inputValues, userId)
         .then(() => {
@@ -35,9 +35,9 @@ const ContactForm = () => {
         });
       setInputValues({
         email: '',
-        firstName: '',
+        message: '',
         lastName: '',
-        message: ''
+        firstName: ''
       });
     } else {
       setValidation({ errors, isValid });

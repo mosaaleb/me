@@ -24,8 +24,8 @@ const ContactForm = () => {
 
     if (isValid) {
       setValidation({ errors: {}, isValid: true });
-      const templateId = process.env.TEMPLATE_ID;
-      const userId = process.env.USER_ID;
+      const templateId = process.env.GATSBY_TEMPLATE_ID;
+      const userId = process.env.GATSBY_USER_ID;
 
       emailjs.send('gmail', templateId, inputValues, userId)
         .then(() => {

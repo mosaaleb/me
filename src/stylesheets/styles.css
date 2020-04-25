@@ -55,7 +55,7 @@
 }
 
 .markdown {
-  @apply text-gray-900 break-words leading-relaxed font-ibm;
+  @apply leading-relaxed text-gray-900 break-words font-ibm;
 }
 
 .markdown > * + * {
@@ -79,7 +79,7 @@
 }
 
 .markdown a {
-  @apply text-indigo-600 font-semibold;
+  @apply font-semibold text-indigo-600;
 }
 
 .markdown strong a {

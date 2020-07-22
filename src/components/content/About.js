@@ -4,13 +4,13 @@ const About = () => (
   <div className="py-4">
     <h3
       id="about"
-      className="font-bold text-4xl text-indigo-600 border-b inline-block border-dashed border-gray-500"
+      className="inline-block text-4xl font-bold text-indigo-600 border-b border-gray-500 border-dashed"
     >
       About me
     </h3>
     <div className="py-5">
       <h3 className="text-xl md:text-2xl">Hi, I&apos;m Muhammad.</h3>
-      <h2 className="text-xl md:text-2xl mb-3">
+      <h2 className="mb-3 text-xl md:text-2xl">
         Nice to meet you!
         <span role="img" aria-label="wave">
           👋🏼
@@ -25,7 +25,7 @@ const About = () => (
             target="_blank"
             rel="noopener noreferrer"
             href="https://reactjs.org/"
-            className="text-indigo-600 border-b border-dashed"
+            className="text-indigo-600 border-b border-dashed transition-colors ease-linear duration-200 hover:text-indigo-800"
           >
             ReactJS.
           </a>
@@ -37,7 +37,7 @@ const About = () => (
             target="_blank"
             rel="noopener noreferrer"
             href="https://rubyonrails.org/"
-            className="text-indigo-600 border-b border-dashed"
+            className="text-indigo-600 border-b border-dashed transition-colors ease-linear duration-200 hover:text-indigo-800"
           >
             Rails
           </a>

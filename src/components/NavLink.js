@@ -3,7 +3,7 @@ import PropTyes from 'prop-types';
 import { Link } from 'gatsby';
 
 const NavLink = ({ linkName, anchorLink, setIsSideBarOpen }) => (
-  <p className="p-2 hover:underline hover:text-indigo-600">
+  <p className="p-2 hover:underline transition-colors duration-300 ease-linear hover:text-indigo-600">
     <Link
       to={anchorLink}
       onClick={() => setIsSideBarOpen(false)}
@@ -12,7 +12,6 @@ const NavLink = ({ linkName, anchorLink, setIsSideBarOpen }) => (
     </Link>
   </p>
 );
-
 
 export default NavLink;
 

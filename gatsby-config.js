@@ -43,6 +43,13 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'tils',
+        path: 'tils'
+      }
+    },
+    {
       resolve: 'gatsby-plugin-webpack-bundle-analyzer',
       options: {
         production: true,

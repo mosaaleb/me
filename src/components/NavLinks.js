@@ -10,6 +10,7 @@ const NavLinks = ({ setIsSideBarOpen }) => (
     <NavLink linkName="Skills" anchorLink="/#skills" setIsSideBarOpen={setIsSideBarOpen} />
     <NavLink linkName="Contact" anchorLink="/#contact" setIsSideBarOpen={setIsSideBarOpen} />
     <NavLink linkName="Blog" anchorLink="/blog" setIsSideBarOpen={setIsSideBarOpen} />
+    <NavLink linkName="Today I Learned" anchorLink="/today-i-learned" setIsSideBarOpen={setIsSideBarOpen} />
   </nav>
 );
 

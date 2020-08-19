@@ -9,7 +9,7 @@ export default () => (
   <Layout>
     <Helmet>
       <html lang="en" />
-      <title>Today I Learned</title>
+      <title>TodayILearned</title>
       <meta name="description" content="site description" />
     </Helmet>
     <TodayILearned />

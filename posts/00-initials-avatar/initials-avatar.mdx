@@ -1,9 +1,13 @@
 ---
-slug: generate-initials-avatar-programmatically-with-minimagick-and-active-storage
-title: How to generate initials avatar programmatically with MiniMagick and Active Storage
+slug:
+  generate-initials-avatar-programmatically-with-minimagick-and-active-storage
+title:
+  How to generate initials avatar programmatically with MiniMagick and Active
+  Storage
 author: Muhammad Ebeid
 description:
-  how to generate initial avatars programmatically with activ storage and minimagick in rails 
+  how to generate initial avatars programmatically with activ storage and
+  minimagick in rails
 date: "2020-01-17T00:52:08.562Z"
 categories:
   - Rails
@@ -16,11 +20,18 @@ attribute:
   photographer-name: Jon Tyson
   photographer-link: https://unsplash.com/@jontyson
 ---
-[Gravatar](https://en.gravatar.com/) is an amazing service to quickly personalize your business users, but despite its power, it comes also with some disadvantages. The more Gravatars that you have on your page, the slower the page will load because your application will make a request for every gravatar to gravatar servers.
+[Gravatar](https://en.gravatar.com/) is an amazing service to quickly
+personalize your business users, but despite its power, it comes also with some
+disadvantages. The more Gravatars that you have on your page, the slower the
+page will load because your application will make a request for every gravatar
+to gravatar servers.
 
 <br />
 
-In this guide, we will generate Gmail-like avatars with the user's name initials, using the [mini-magick](https://github.com/minimagick/minimagick) gem then attaching users avatars to [active storage](https://edgeguides.rubyonrails.org/active_storage_overview.html).
+In this guide, we will generate Gmail-like avatars with the user's name
+initials, using the [mini-magick](https://github.com/minimagick/minimagick) gem
+then attaching users avatars to [active
+storage](https://edgeguides.rubyonrails.org/active_storage_overview.html).
 
 
 ## Generating the avatar
@@ -32,7 +43,11 @@ For this, we need to install MiniMagick gem.
 gem install mini_magick
 ```
 
-MiniMagick is a lightweight gem for image processing based on [ImageMagick](https://imagemagick.org/script/index.php). So before using it, we need to install ImageMagick first. Depending on your system, you will find instructions on how to install it from their [homepage](https://imagemagick.org/script/index.php).
+MiniMagick is a lightweight gem for image processing based on
+[ImageMagick](https://imagemagick.org/script/index.php). So before using it, we
+need to install ImageMagick first. Depending on your system, you will find
+instructions on how to install it from their
+[homepage](https://imagemagick.org/script/index.php).
 
 <br />
 
@@ -55,7 +70,8 @@ end
 generate_image
 ```
 
-run the script, you should see a new image with the name `avatar.jpg` having a gray background appears on the same directory.
+run the script, you should see a new image with the name `avatar.jpg` having a
+gray background appears on the same directory.
 
 Let's add more properties to the generated image:
 
@@ -87,28 +103,41 @@ Run the script again, you should see this image with centered "ME" letters.
 
 <br/>
 
-Now we have finished the image generation logic, the real question remains where to put this logic?
+Now we have finished the image generation logic, the real question remains
+where to put this logic?
 
 <br/>
 
-My first thought was to use active record callbacks, we can run the `generate_avatar` method with user name initials after creating a new user, but there is one problem with using callbacks, `generate_avatar` callback will create a dependency because creating the user and generating the default image are tightly coupled together.
+My first thought was to use active record callbacks, we can run the
+`generate_avatar` method with user name initials after creating a new user, but
+there is one problem with using callbacks, `generate_avatar` callback will
+create a dependency because creating the user and generating the default image
+are tightly coupled together.
 
 <br />
 
-Consider a scenario where you decided to add Omniauth authentication with Facebook and attach the user avatar to facebook image, this code will still run while we don't actually need it.
+Consider a scenario where you decided to add Omniauth authentication with
+Facebook and attach the user avatar to facebook image, this code will still run
+while we don't actually need it.
 
 <br />
 
-So instead we can move this logic into the registration controller which separates the concerns to only creating a user with full registration, but since controllers are only supposed to have request/response logic, we need a new design pattern.
+So instead we can move this logic into the registration controller which
+separates the concerns to only creating a user with full registration, but
+since controllers are only supposed to have request/response logic, we need a
+new design pattern.
 
 
 ## Enter Service Objects
 
-Putting all image generation logic in the registration controller breaks the more important principle in OOP, single responsibility. So what is the solution?
+Putting all image generation logic in the registration controller breaks the
+more important principle in OOP, single responsibility. So what is the
+solution?
 
 <br />
 
-Service objects are just Plain Old Ruby Object (PORO), which should encapsulate and execute single action.
+Service objects are just Plain Old Ruby Object (PORO), which should encapsulate
+and execute single action.
 
 <br />
 
@@ -124,9 +153,13 @@ def create
 end
 ```
 
-or if you are using [devise](https://github.com/heartcombo/devise) gem for authentication, we need first to [override](https://github.com/heartcombo/devise#configuring-controllers) the default `create` action in devise's `registration_controller`.
+or if you are using [devise](https://github.com/heartcombo/devise) gem for
+authentication, we need first to
+[override](https://github.com/heartcombo/devise#configuring-controllers) the
+default `create` action in devise's `registration_controller`.
 
-After generating devise registration controller let's customize the `create` action to generate the default avatar after creating the new user.
+After generating devise registration controller let's customize the `create`
+action to generate the default avatar after creating the new user.
 
 <br />
 
@@ -144,21 +177,32 @@ end
 
 <br />
 
-What this will do is first will call the parent [`create`](https://github.com/heartcombo/devise/blob/master/app/controllers/devise/registrations_controller.rb#L16) action, and yield any block if any was given, in our case it will execute the avatar generation logic.
+What this will do is first will call the parent
+[`create`](https://github.com/heartcombo/devise/blob/master/app/controllers/devise/registrations_controller.rb#L16)
+action, and yield any block if any was given, in our case it will execute the
+avatar generation logic.
 
 
-The new avatar generation class is now responsible for one thing, the registration controller is more readable and doesn't have logic that doesn't belong to it.
+The new avatar generation class is now responsible for one thing, the
+registration controller is more readable and doesn't have logic that doesn't
+belong to it.
 
 
 ## Adding MiniMagick/Image Processing gem
 
-Now that we have finished with our design decision, let's add our `AvatarGenerator` class.
+Now that we have finished with our design decision, let's add our
+`AvatarGenerator` class.
 
 Before adding the code, we need to first install MiniMagick in our application.
 
 <br />
 
-To add `mini_magick` gem, you can install [image_processing](https://github.com/janko/image_processing) gem which is a wrapper for ImageMagick and libvips. Image Processing gem also provides [variants](https://api.rubyonrails.org/classes/ActiveStorage/Variant.html) for your images so that you can create thumbnails, fixed-size avatars, or any other image manipulations.
+To add `mini_magick` gem, you can install
+[image_processing](https://github.com/janko/image_processing) gem which is a
+wrapper for ImageMagick and libvips. Image Processing gem also provides
+[variants](https://api.rubyonrails.org/classes/ActiveStorage/Variant.html) for
+your images so that you can create thumbnails, fixed-size avatars, or any other
+image manipulations.
 
 Open `Gemfile` and add this line:
 
@@ -166,11 +210,14 @@ Open `Gemfile` and add this line:
 gem 'image_processing'
 ```
 
-Or uncomment it if is already there, then run `bundle install` to install the gem.
+Or uncomment it if is already there, then run `bundle install` to install the
+gem.
 
 <br />
 
-We are going to attach the generated image with Active Storage attachments, so before moving on make sure that active storage is [installed](https://edgeguides.rubyonrails.org/active_storage_overview.html#setup)
+We are going to attach the generated image with Active Storage attachments, so
+before moving on make sure that active storage is
+[installed](https://edgeguides.rubyonrails.org/active_storage_overview.html#setup)
 
 
 After you have added active storage, add this line to user model:
@@ -185,7 +232,9 @@ We are ready now to add our `AvatarGenerator` class, let's move on.
 
 ## Adding AvatarGenerator service object class
 
-First, create a new folder inside the `app` directory called `services` which will hold all service objects that our application will have. Now, let's create `avatar_generator.rb` file.
+First, create a new folder inside the `app` directory called `services` which
+will hold all service objects that our application will have. Now, let's create
+`avatar_generator.rb` file.
 
 This class will:
 - Generate initials avatar image for new registered user.
@@ -246,16 +295,19 @@ class AvatarGenerator
 end
 ```
 
-I have added some random color choosing functionality to generate different colors every time you generate an avatar.
+I have added some random color choosing functionality to generate different
+colors every time you generate an avatar.
 
 <br />
 
 **In conclusion** 
-We have implemented a way to programtically generate Gmail-like avatars and used Service Objects design pattern to DRY fat controllers.
+We have implemented a way to programtically generate Gmail-like avatars and
+used Service Objects design pattern to DRY fat controllers.
 
 <br />
 
-This concludes our detailed look into generating initials avatars in Rails. Hopefully, everything is working for you!
+This concludes our detailed look into generating initials avatars in Rails.
+Hopefully, everything is working for you!
 
 ## Resources:
 

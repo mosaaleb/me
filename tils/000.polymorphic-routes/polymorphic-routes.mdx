@@ -1,8 +1,8 @@
 ---
 slug: rails-polymorphic-routes
-title: When in doubt, use polymorphic_url
+title: Rails polymorphic routes
 author: Muhammad Ebeid
-description: refactor your rails routes using polymorphic_rul
+description: refactor your rails routes using polymorphic_path
 date: "2020-08-19T19:47:40.786Z"
 categories:
   - Rails
@@ -13,8 +13,10 @@ Rails polymorphic routes are a smart way to generate paths for Active Record
 model instances. Suppose that you are working on an application that allows
 multiple models to be liked.
 
+<br />
+
 For example if you have `Post` and `Comment` models, that could be liked by a
-user, to generate the routes for liking a post or a comment, it could be like:
+user, to generate the routes for liking a post or a comment, we could write:
 
 ```ruby
 # routes
@@ -33,19 +35,24 @@ resources :comment do
 end
 ```
 
-These routes could be refactored by using, but for the sake of this post, let's
-keep it that way.
+These routes could be refactored by using
 [concerns](https://edgeguides.rubyonrails.org/routing.html#routing-concerns)
+, but for the sake of this post, let's
+keep it that way.
+
+<br />
 
 Also, I prefer using member routes here, because it generates more meaningful
-paths in this particular case. Consider having `like_post_path` instead of `post_likes_path`
-if you used nested resources. The path name also reflects that action being taken
-by the user.
+paths in this particular case. Consider having `like_post_path` instead of
+`post_likes_path` if you used nested resources. The path name also reflects
+that action being taken by the user.
 
-Another reason for using member routes, because i personally find it more easy to remember path names.
+Another reason for using member routes, because i personally find it more easy
+to remember path names.
 
-Now if you want to generate path for liking and disliking a post or a comment, you will have to check
-if the likable is a `post` or a `comment` to generate the right path for it.
+Now if you want to generate path for liking and disliking a post or a comment,
+you will have to check if the likable is a `post` or a `comment` to generate
+the right path for it.
 
 ```ruby
 # paths for liking or disliking a post
@@ -60,10 +67,9 @@ link_to 'dislike', dislike_comment_path(@post), method: :delete
 But with using `polymorphic_path`, this can be refactored into:
 
 ```ruby
-link_to 'like', polymorphic_path([:like, likable]), method: :post
-link_to 'dislike', polymorphic_path([:dislike, likable]), method: :delete
+link_to 'like', polymorphic_path([:like, @likable]), method: :post
+link_to 'dislike', polymorphic_path([:dislike, @likable]), method: :delete
 ```
 
-Now you don't care what you are generating this path for, Rails will take care of it.
-
-
+In this case, `polymorphic_path` generates the right url based on the
+`@likable` type.

@@ -15,8 +15,10 @@ multiple models to be liked.
 
 <br />
 
-For example if you have `Post` and `Comment` models, that could be liked by a
+For example, if you have `Post` and `Comment` models, that could be liked by a
 user, to generate the routes for liking a post or a comment, we could write:
+
+<br />
 
 ```ruby
 # routes
@@ -35,24 +37,26 @@ resources :comment do
 end
 ```
 
-These routes could be refactored by using
-[concerns](https://edgeguides.rubyonrails.org/routing.html#routing-concerns)
-, but for the sake of this post, let's
+We can refactor these routes using
+[concerns](https://edgeguides.rubyonrails.org/routing.html#routing-concerns),
+but for the sake of this post, let's
 keep it that way.
 
 <br />
 
-Also, I prefer using member routes here, because it generates more meaningful
+I prefer using member routes here, because it generates more meaningful
 paths in this particular case. Consider having `like_post_path` instead of
-`post_likes_path` if you used nested resources. The path name also reflects
-that action being taken by the user.
+`post_likes_path` if you used nested resources. The pathname also reflects that
+action being taken by the user.
 
-Another reason for using member routes, because i personally find it more easy
-to remember path names.
+Another reason for using member routes, because I personally find it easier to
+remember the name of the route helper.
 
-Now if you want to generate path for liking and disliking a post or a comment,
-you will have to check if the likable is a `post` or a `comment` to generate
-the right path for it.
+Now if you want to generate a path for liking and disliking a post or a
+comment, you will have to check if the likable is a `post` or a `comment` to
+generate the right path for it.
+
+<br />
 
 ```ruby
 # paths for liking or disliking a post
@@ -71,5 +75,12 @@ link_to 'like', polymorphic_path([:like, @likable]), method: :post
 link_to 'dislike', polymorphic_path([:dislike, @likable]), method: :delete
 ```
 
-In this case, `polymorphic_path` generates the right url based on the
+In this case, `polymorphic_path` generates the right URL based on the
 `@likable` type.
+
+This can be very handy working with a rails gems, when you don't know the
+`@likable` type.
+
+## Resources:
+- [Polymorphic Routes | Ruby on Rails](https://api.rubyonrails.org/v6.0.3.2/classes/ActionDispatch/Routing/PolymorphicRoutes.html)
+- [Polymorphic Association | Rails guides](https://guides.rubyonrails.org/association_basics.html#polymorphic-associations)

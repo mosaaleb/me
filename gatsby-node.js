@@ -1,7 +1,14 @@
+const kebabCase = (str) => (
+  str
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .map((x) => x.toLowerCase())
+    .join('-')
+);
+
 exports.createPages = async ({ actions, graphql }) => {
   const posts = await graphql(`
     query {
-      allMdx(filter: {fileAbsolutePath: {regex: "/posts/"}}){
+      allMdx(filter: { fileAbsolutePath: { regex: "/posts/" } }) {
         nodes {
           frontmatter {
             slug
@@ -13,11 +20,21 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const tils = await graphql(`
     query {
-      allMdx(filter: {fileAbsolutePath: {regex: "/tils/"}}){
+      allMdx(filter: { fileAbsolutePath: { regex: "/tils/" } }) {
         nodes {
           frontmatter {
             slug
           }
+        }
+      }
+    }
+  `);
+
+  const tags = await graphql(`
+    query {
+      allMdx {
+        group(field: frontmatter___tags) {
+          fieldValue
         }
       }
     }
@@ -39,6 +56,16 @@ exports.createPages = async ({ actions, graphql }) => {
       component: require.resolve('./src/templates/Til.js'),
       context: {
         slug: til.frontmatter.slug
+      }
+    });
+  });
+
+  tags.data.allMdx.group.forEach((tag) => {
+    actions.createPage({
+      path: `/tags/${kebabCase(tag.fieldValue)}`,
+      component: require.resolve('./src/templates/Tag.js'),
+      context: {
+        tag: tag.fieldValue
       }
     });
   });

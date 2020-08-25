@@ -7,10 +7,10 @@ const usePosts = () => {
         nodes {
           frontmatter {
             date
+            tags
             slug
             title
             author
-            categories
             description
           }
           excerpt
@@ -22,10 +22,10 @@ const usePosts = () => {
   return posts.allMdx.nodes.map((post) => ({
     excerpt: post.excerpt,
     date: post.frontmatter.date,
+    tags: post.frontmatter.tags,
     slug: post.frontmatter.slug,
     title: post.frontmatter.title,
     author: post.frontmatter.author,
-    categories: post.frontmatter.categories,
     description: post.frontmatter.description
   }));
 };

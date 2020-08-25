@@ -12,8 +12,8 @@ export const query = graphql`
     mdx(frontmatter: { slug: { eq: $slug } }) {
       frontmatter {
         date
+        tags
         title
-        categories
       }
       body
     }
@@ -26,7 +26,7 @@ const Til = ({ data: { mdx: til } }) => (
       <title>{til.frontmatter.title}</title>
     </Helmet>
     <article className="max-w-6xl mx-auto md:w-11/12">
-      <TagLinks tags={til.frontmatter.categories} />
+      <TagLinks tags={til.frontmatter.tags} />
       <h2 className="my-4 text-2xl font-bold text-center text-indigo-900 lg:text-4xl">
         {til.frontmatter.title}
       </h2>

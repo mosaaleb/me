@@ -8,9 +8,9 @@ const useTils = () => {
           frontmatter {
             date
             slug
+            tags
             title
             author
-            categories
             description
           }
           excerpt
@@ -22,10 +22,10 @@ const useTils = () => {
   return tils.allMdx.nodes.map((til) => ({
     excerpt: til.excerpt,
     date: til.frontmatter.date,
+    tags: til.frontmatter.tags,
     slug: til.frontmatter.slug,
     title: til.frontmatter.title,
     author: til.frontmatter.author,
-    categories: til.frontmatter.categories,
     description: til.frontmatter.description
   }));
 };

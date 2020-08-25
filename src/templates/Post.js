@@ -23,7 +23,7 @@ export const query = graphql`
           }
         }
         attribute { source, photographer_name, photographer_link, source_url }
-        categories
+        tags
       }
       body
     }
@@ -35,17 +35,17 @@ const Post = ({ data: { mdx: post } }) => (
     <Helmet>
       <title>{post.frontmatter.title}</title>
     </Helmet>
-    <article className="mx-auto md:w-11/12 max-w-6xl">
-      <TagLinks tags={post.frontmatter.categories} />
-      <h2 className="font-bold text-2xl lg:text-4xl text-center text-indigo-900 my-4">
+    <article className="max-w-6xl mx-auto md:w-11/12">
+      <TagLinks tags={post.frontmatter.tags} />
+      <h2 className="my-4 text-2xl font-bold text-center text-indigo-900 lg:text-4xl">
         {post.frontmatter.title}
       </h2>
-      <h4 className="text-center text-gray-600 text-xs lg:text-sm">
+      <h4 className="text-xs text-center text-gray-600 lg:text-sm">
         Posted on&nbsp;
         {new Date(post.frontmatter.date).toDateString()}
       </h4>
       <div className="max-w-3xl mx-auto my-4">
-        <div className="rounded mt-6 mx-auto border overflow-hidden shadow-lg max-w-3xl">
+        <div className="max-w-3xl mx-auto mt-6 overflow-hidden border rounded shadow-lg">
           <Image
             alt={post.frontmatter.title}
             fluid={post.frontmatter.image.childImageSharp.fluid}
@@ -53,7 +53,7 @@ const Post = ({ data: { mdx: post } }) => (
         </div>
         <ImageAttribute attribute={post.frontmatter.attribute} />
       </div>
-      <div className="markdown my-10 max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto my-10 markdown">
         <MDXRenderer>{post.body}</MDXRenderer>
       </div>
     </article>

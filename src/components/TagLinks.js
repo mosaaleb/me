@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
+import { kebabCase } from '../utils';
 
 const TagLinks = ({ tags }) => (
-  <div className="w-full mt-5 flex justify-center">
+  <div className="flex justify-center w-full mt-5">
     {tags.map((tag) => (
       <Link
-        to="/blog"
+        to={`/tags/${kebabCase(tag)}`}
         key={tag}
-        className="inline-block text-sm uppercase mr-2 mb-2 px-1 font-hairline rounded bg-indigo-600 text-gray-100"
+        className="inline-block px-1 mb-2 mr-2 text-sm font-hairline text-gray-100 uppercase bg-indigo-600 rounded"
       >
         {tag}
       </Link>

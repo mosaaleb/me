@@ -3,15 +3,12 @@ import { graphql, useStaticQuery } from 'gatsby';
 const useTils = () => {
   const tils = useStaticQuery(graphql`
     query {
-      allMdx(filter: {fileAbsolutePath: {regex: "/tils/"}}) {
+      allMdx(filter: { fileAbsolutePath: { regex: "/tils/" } }) {
         nodes {
           frontmatter {
             date
             slug
-            tags
             title
-            author
-            description
           }
           excerpt
         }

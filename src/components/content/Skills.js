@@ -4,16 +4,16 @@ const Skills = () => (
   <div className="py-4">
     <h3
       id="skills"
-      className="font-bold text-4xl text-indigo-600 border-b inline-block border-dashed border-gray-500"
+      className="inline-block text-4xl font-bold text-indigo-600 border-b border-gray-500 border-dashed"
     >
       Skills
     </h3>
     <div className="flex flex-col lg:flex-row lg:justify-between">
-      <div className="w-full bg-indigo-transparent p-5 my-2 flex flex-col mt-10 rounded shadow-lg lg:w-6/13">
-        <div className="bg-indigo-500 w-16 h-16 p-4 rounded-full -mt-12 mx-auto">
+      <div className="flex flex-col w-full p-5 my-2 mt-10 rounded shadow-lg bg-indigo-transparent lg:w-6/13">
+        <div className="w-16 h-16 p-4 mx-auto -mt-12 bg-indigo-500 rounded-full">
           <svg
             viewBox="0 0 64 64"
-            className="fill-current text-gray-100 h-8 w-8"
+            className="w-8 h-8 text-gray-100 fill-current"
           >
             <path d="M39.0732994,41.3769989C39.2314987,41.7645988,39.6054993,42,40,42c0.1259995,0,0.2528992-0.0233994,0.3769989-0.0732002 l12-4.8790016C52.7509995,36.8955002,52.9960976,36.5331993,53,36.1299019 c0.0038986-0.4043007-0.2362785-0.7705002-0.607399-0.9287033l-12-5.1210995 c-0.5038795-0.2148991-1.0956993,0.0185013-1.3125,0.5273018c-0.2168007,0.5077991,0.0194969,1.0956993,0.527298,1.3125 l9.7919998,4.1786976l-9.7762985,3.9746017C39.1113014,40.2812004,38.8652,40.8652,39.0732994,41.3769989z" />
             <path d="M13.6231003,37.0477982l12,4.8790016C25.7471008,41.9766006,25.8740005,42,26,42 c0.3945007,0,0.7686005-0.2354012,0.9267998-0.6230011c0.2080002-0.5117989-0.0380783-1.0957985-0.549799-1.3037987 l-9.7763996-3.9746017l9.7919998-4.1786976c0.5077991-0.2168007,0.7441196-0.8047009,0.5272999-1.3125 c-0.217701-0.5088005-0.8095016-0.7431011-1.3125-0.5273018l-12,5.1210995 c-0.3711004,0.1582031-0.6113005,0.5244026-0.6073999,0.9287033 C13.0039005,36.5331993,13.2490005,36.8955002,13.6231003,37.0477982z" />
@@ -25,8 +25,8 @@ const Skills = () => (
           </svg>
         </div>
         <div>
-          <h3 className="font-bold text-center mt-3 mb-5 text-lg">Frontend</h3>
-          <ul className="list-disc px-10 text-lg">
+          <h3 className="mt-3 mb-5 text-lg font-bold text-center">Frontend</h3>
+          <ul className="px-10 text-lg list-disc">
             <li>React/Redux</li>
             <li>GatsbyJS</li>
             <li>JavaScript</li>
@@ -36,11 +36,11 @@ const Skills = () => (
           </ul>
         </div>
       </div>
-      <div className="w-full bg-indigo-transparent p-5 my-2 flex flex-col mt-10 rounded shadow-lg lg:w-6/13">
-        <div className="bg-indigo-500 w-16 h-16 p-4 rounded-full -mt-12 mx-auto">
+      <div className="flex flex-col w-full p-5 my-2 mt-10 rounded shadow-lg bg-indigo-transparent lg:w-6/13">
+        <div className="w-16 h-16 p-4 mx-auto -mt-12 bg-indigo-500 rounded-full">
           <svg
             viewBox="0 0 46.081 46.081"
-            className="fill-current text-gray-100 h-8 w-8"
+            className="w-8 h-8 text-gray-100 fill-current"
           >
             <path d="M45.266,9.37c0-5.254-9.763-9.37-22.227-9.37C10.578,0,0.815,4.116,0.815,9.37v5.319c0,5.253,9.762,9.368,22.223,9.368 c12.464,0,22.227-4.115,22.227-9.368V9.37z M44.016,14.688c0,4.4-9.606,8.118-20.977,8.118c-11.368,0-20.973-3.718-20.973-8.118 V9.369c0-4.401,9.604-8.12,20.973-8.12c11.371,0,20.977,3.718,20.977,8.12V14.688z" />
             <path d="M45.266,20.03c0-0.345-0.28-0.625-0.625-0.625s-0.625,0.28-0.625,0.625c0,4.402-9.606,8.119-20.977,8.119 c-11.368,0-20.973-3.717-20.973-8.119c0-0.345-0.28-0.625-0.625-0.625s-0.625,0.28-0.625,0.625v5.32 c0,5.252,9.762,9.367,22.223,9.367c12.464,0,22.227-4.115,22.227-9.367V20.03z M44.016,25.35c0,4.399-9.606,8.117-20.977,8.117 c-11.368,0-20.973-3.718-20.973-8.117v-2.147c3.062,3.719,11.399,6.196,20.973,6.196c9.575,0,17.914-2.477,20.977-6.196V25.35z" />
@@ -48,13 +48,14 @@ const Skills = () => (
           </svg>
         </div>
         <div>
-          <h3 className="font-bold text-center mt-3 mb-5 text-lg">Backend</h3>
-          <ul className="list-disc px-10 text-lg">
+          <h3 className="mt-3 mb-5 text-lg font-bold text-center">Backend</h3>
+          <ul className="px-10 text-lg list-disc">
             <li>Ruby/Rails</li>
             <li>TDD</li>
             <li>RSpec/Capybara</li>
             <li>REST API</li>
             <li>PostgreSQL</li>
+            <li>Capistrano</li>
           </ul>
         </div>
       </div>

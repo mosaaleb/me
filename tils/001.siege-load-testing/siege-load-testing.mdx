@@ -1,0 +1,115 @@
+---
+slug: load-testing-and-server-benchmarking-with-siege
+title: Load Testing and Benchmarking with Siege
+author: Muhammad Ebeid
+description: The basic of HTTP Load Testing and Server Benchmarking with Siege
+date: "2020-09-10T13:43:19.306Z"
+tags:
+  - HTTP
+  - Siege
+  - Rails
+  - Servers
+  - Benchmarking
+---
+[Siege](https://linux.die.net/man/1/siege) is a great open-source tool to
+analyze loads in HTTP requests and benchmark server performance.
+
+<br />
+
+## What is load testing?
+Load testing is a form of non-functional testing, which will give you helpful
+insights about at what point your website will crash.
+
+There's a lot of tools that you can use to perform load and stress testing. We
+are going to focus on Siege.
+
+Siege allows you to hit a web server with a configurable number of concurrent
+simulated users.
+
+To demonstrate, I have a simple Rails application, with just one route and one
+controller.
+
+<br />
+
+```ruby
+# routes.rb
+get '/page', to: 'pages#index'
+
+# pages_controller.rb
+def index
+  render json: { hello: :world }
+end
+```
+
+<br />
+
+First, install Siege in your system, start the rails server, then run this
+command:
+
+<br />
+
+```sh
+siege -b --content-type 'application/json' -c 50 -r 40 'http://localhost:3000/pages'
+```
+
+<br />
+
+This command will simulate 50 users hitting `http://localhost:3000/pages`
+URL, for 40 times repetition for every user.
+
+Siege will take a few seconds to run the simulation and will generate this
+report:
+
+<br />
+
+```
+** SIEGE 4.0.4
+** Preparing 50 concurrent users for battle.
+The server is now under siege...
+Transactions:                   2000 hits
+Availability:                 100.00 %
+Elapsed time:                 252.99 secs
+Data transferred:               0.03 MB
+Response time:                  6.25 secs
+Transaction rate:               7.91 trans/sec
+Throughput:                     0.00 MB/sec
+Concurrency:                   49.41
+Successful transactions:        2000
+Failed transactions:               0
+Longest transaction:            7.33
+Shortest transaction:           0.38
+```
+
+<br />
+
+You will notice that Siege runs 2000 hits on your server, which is the number
+of 50 users hitting the sever each for 40 times.
+
+Check Siege [documentation](https://linux.die.net/man/1/siege) for more
+more description on the generated stattistics.
+
+<br />
+
+If you found yourself running this command frequently, you can create a
+the script inside the `bin` folder to automate this task.
+
+```bash
+#! /bin/bash
+
+REPS=20
+CONCURRENCY=30
+CONTENT_TYPE='application/json'
+URL='http://localhost:3000/pages'
+
+siege -b --content-type $CONTENT_TYPE -c $CONCURRENCY -r $REPS $URL
+```
+
+<br />
+
+Now, you can run this script by just typing `bin/siege.sh` in your terminal.
+
+<br />
+
+## Resources:
+- [Siege documentation | Linux man page](https://linux.die.net/man/1/siege)
+- [Siege | Wikipedia](https://en.wikipedia.org/wiki/Siege_(software))

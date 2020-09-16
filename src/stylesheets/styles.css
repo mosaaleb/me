@@ -115,31 +115,31 @@
 }
 
 .markdown blockquote {
-  @apply text-base border-l-4 border-gray-300 pl-4 pr-4 text-gray-600;
+  @apply pl-4 pr-4 text-base text-gray-700 border-l-4 border-indigo-400;
 }
 
 .markdown code {
-  @apply text-lg font-ibm inline rounded px-1 py-05;
+  @apply inline px-1 text-lg rounded font-ibm py-05;
 }
 
 .markdown pre {
-  @apply rounded p-4 overflow-x-scroll;
+  @apply p-4 overflow-x-scroll rounded;
 }
 
 .markdown pre code {
-  @apply block bg-transparent p-0 overflow-visible rounded-none;
+  @apply block p-0 overflow-visible bg-transparent rounded-none;
 }
 
 .markdown ul {
-  @apply text-base pl-8 list-disc;
+  @apply pl-8 text-base list-disc;
 }
 
 .markdown ol {
-  @apply text-base pl-8 list-decimal;
+  @apply pl-8 text-base list-decimal;
 }
 
 .markdown kbd {
-  @apply text-xs inline-block rounded border px-1 py-05 align-middle font-normal shadow;
+  @apply inline-block px-1 text-xs font-normal align-middle border rounded shadow py-05;
 }
 
 .markdown table {
@@ -147,11 +147,11 @@
 }
 
 .markdown th {
-  @apply border py-1 px-3;
+  @apply px-3 py-1 border;
 }
 
 .markdown td {
-  @apply border py-1 px-3;
+  @apply px-3 py-1 border;
 }
 
 /* Override pygments style background color. */

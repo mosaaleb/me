@@ -1,0 +1,63 @@
+---
+slug: offline-ruby-gems-documention
+title: Offline Ruby Gems Documentation
+author: Muhammad Ebeid
+description: Browse installed ruby gems documentation with gem server
+date: "2020-09-16T16:08:48.068Z"
+tags:
+  - ri
+  - Ruby
+  - Documentations
+  - RubyGems
+---
+
+RDoc and ri tools can be extremely useful if you have a slow internet
+connection, and need to consult the docs for Ruby Core or any other ruby gems.
+
+<br />
+
+If you are using gem command to install ruby gems, it generates Ruby Docs for
+the installed gems.
+
+<br />
+
+RDoc and ri are useful tools to create/generate/view documentation for
+ruby-core and installed ruby gems. I like them because they allow you to read
+the docs without leaving your editor and interrupting your workflow.
+
+<br />
+
+To use it, just pass the class or method that you searching for:
+
+```bash
+ri ActiveRecord::Base
+ri ActiveRecord::Base.save
+```
+
+<br />
+
+Quoted from ri docs:
+> A '.' matches either class or instance methods, while #method matches only
+instance and ::method matches only class methods.
+
+<br />
+
+If you don't enjoy reading the docs from the terminal, RubyGems got your back!
+
+[RubyGems](https://guides.rubygems.org/) when installed ships with `gem
+server` command. This will serve all installed gems in your system. You can
+then search for any gem and browse their docs in the browser.
+
+```bash
+~ gem server
+Server started at http://0.0.0.0:8808
+```
+
+Enjoy your local docs ;)
+
+<br />
+
+## Resources:
+- [RDoc | GitHub](https://github.com/ruby/rdoc)
+- [Gem Server | RubyGems](https://guides.rubygems.org/run-your-own-gem-server/)
+- [5 Reasons You Should Use ri To Read Ruby Documentation](https://www.jstorimer.com/blogs/workingwithcode/7766081-5-reasons-you-should-use-ri-to-read-ruby-documentation)

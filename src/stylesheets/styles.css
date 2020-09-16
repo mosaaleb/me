@@ -95,7 +95,7 @@
 }
 
 .markdown h3 {
-  @apply leading-snug text-lg  .text-gray-900 font-semibold mb-4 mt-6;
+  @apply leading-snug text-lg .text-gray-900 font-semibold mb-4 mt-6;
 }
 
 .markdown h4 {
@@ -115,7 +115,7 @@
 }
 
 .markdown blockquote {
-  @apply pl-4 pr-4 text-base text-gray-700 border-l-4 border-indigo-400;
+  @apply pl-4 pr-4 italic text-gray-700 border-l-4 border-indigo-400;
 }
 
 .markdown code {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { kebabCase } from '../utils';
 
 const TagLinks = ({ tags }) => (
-  <div className="flex justify-center w-full mt-5">
+  <div className="flex flex-wrap justify-center w-full mt-5">
     {tags.map((tag) => (
       <Link
         to={`/tags/${kebabCase(tag)}`}
